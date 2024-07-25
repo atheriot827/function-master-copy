@@ -3,7 +3,13 @@
 //////////////////////////////////////////////////////////////////////
 
 function objectValues(object) {
-    // code
+    const array = [];
+    for(let key in object) {
+        if(object.hasOwnProperty(key)) {
+            array.push(object[key]);
+        }
+    }
+    return array;
 } 
 
 //////////////////////////////////////////////////////////////////////
@@ -11,7 +17,13 @@ function objectValues(object) {
 //////////////////////////////////////////////////////////////////////
 
 function keysToString(object) {
-
+    let string = '';
+    for(let key in object) {
+        if(object.hasOwnProperty(key)){
+        string += key + ' ';
+        }
+    }
+    return string.trim(); //trims any trailing spaces
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -19,7 +31,13 @@ function keysToString(object) {
 //////////////////////////////////////////////////////////////////////
 
 function valuesToString(object) {
-    
+    let string = ' ';
+    for(let key in object) {
+        if (object.hasOwnProperty(key) && typeof object[key] === 'string') {
+            string += object[key] + ' ';
+        }
+    }
+    return string.trim(); //trims any trailing spaces
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -27,7 +45,13 @@ function valuesToString(object) {
 //////////////////////////////////////////////////////////////////////
 
 function arrayOrObject(collection) {
-    
+    if(Array.isArray(collection)) {
+        return 'array'
+    } else if (typeof collection === 'object' && collection !== null) {
+        return 'object';
+    } else {
+        return 'neither array or object'
+    }
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -35,7 +59,7 @@ function arrayOrObject(collection) {
 //////////////////////////////////////////////////////////////////////
 
 function capitalizeWord(string) {
-    
+    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -43,7 +67,9 @@ function capitalizeWord(string) {
 //////////////////////////////////////////////////////////////////////
 
 function capitalizeAllWords(string) {
-    
+    return string.split(' ').map(word => 
+        word.charAt(0).toUpperCase() + word.slice(1)
+      ).join(' ');
 }
 
 //////////////////////////////////////////////////////////////////////
